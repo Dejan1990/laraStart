@@ -11,6 +11,19 @@ Vue.component(AlertError.name, AlertError)
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
+window.Toast = Toast;
+
 import VueProgressBar from 'vue-progressbar'
 const options = {
     color: '#bffaf3',

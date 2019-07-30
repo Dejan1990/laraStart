@@ -77,10 +77,10 @@
             <has-error :form="form" field="bio"></has-error>
         </div>
         <div class="form-group">
-            <select name="type" id="type" v-model="form.type" class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                <option value="">Select User Role:</option>
+            <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
+                <option value="">Select User Role</option>
                 <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="user">Standard User</option>
                 <option value="author">Author</option>
             </select>
             <has-error :form="form" field="type"></has-error>
@@ -121,6 +121,13 @@
           createUser() {
               this.$Progress.start();
               this.form.post('api/user');
+
+              $('#addNew').modal('hide');
+
+              Toast.fire({
+                type: 'success',
+                title: 'User created in successfully'
+              });
               this.$Progress.finish();
           },
 
