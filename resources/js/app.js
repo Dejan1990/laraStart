@@ -8,6 +8,11 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+import Gate from './Gate';
+Vue.prototype.$gate = new Gate(window.user);
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
@@ -43,6 +48,7 @@ Vue.use(VueProgressBar, options)
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
+    { path: '/developer', component: require('./components/Developer.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/users', component: require('./components/Users.vue').default }
 ]
@@ -61,6 +67,26 @@ Vue.filter('myDate', function(created) {
 })
 
 window.Fire = new Vue();
+
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+Vue.component(
+    'not-found',
+    require('./components/NotFound.vue').default
+);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
